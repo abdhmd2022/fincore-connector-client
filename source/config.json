@@ -1,0 +1,10 @@
+{
+    "retry" : 5,
+    "interval" : 20,
+    "TALLY_HOST" : "localhost",
+    "TALLY_PORT" : 9000,
+    "serial" : 767060064,
+    "company" : ["Your Choice Tourism LLC","Alpha Technik","AL QANNAS HUNTING EQUIPMENT LLC","DFD Test"],
+    "STARTFROM" : [20220101,20220101,20190101,20160101],
+    "CLOUD" : "http://billing.chaturvedigroup.com"
+}
