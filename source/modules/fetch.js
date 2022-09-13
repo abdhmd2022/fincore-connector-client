@@ -95,7 +95,7 @@ exports.post = async (req,res,next)=>{
 
                         }
                     });
-                }catch{
+                }catch(err){
                     req.error = `Unknown error`;
                     error(`Unknown error`);
                 }

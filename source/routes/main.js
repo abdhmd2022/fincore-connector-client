@@ -2,11 +2,12 @@ const express = require("express");
 const router = express.Router();
 const fetch = require("../modules/fetch");
 const {Config} = require("../modules/classes");
+const request = require("request");
 
 router.get("/",fetch.post,(req,res)=>{
     if(!req.error){
         console.log("All data Inserted Successfully");
-        res.status(200).redirect("/interval");
+        res.send({success:true});
     }else{
         console.log(req.error);
         res.status(400).redirect("/retry/1");
@@ -17,7 +18,7 @@ router.get("/home/:retry",fetch.post,(req,res)=>{
     const retry = req.params.retry;
     if(!req.error){
         console.log("All data Inserted Successfully");
-        res.status(200).redirect("/interval");
+        res.send({success:true});
     }else{
         console.log(req.error);
         res.status(400).redirect(`/retry/${retry}`);
@@ -40,26 +41,32 @@ router.get("/retry/:retry",(req,res)=>{
     }
 });
 
-router.get("/interval",(req,res)=>{
-    async function intervl (){
+start();
+async function start(){
+    try{
         let config = await new Config().configJSON();
         const interval = config.interval * 60 * 1000;
-        res.send(`<!DOCTYPE html><html><head><title>Interval</title>
-            <body onload="interval(${interval})" style="background-color:aqua;margin:auto;">
-            <div style="padding:3%;text-align:center;font-size:5vw;">Waiting</div>
-            <script>
-                function interval(value){
-                    setInterval(home,value);
-                }
-                function home(){
-                    window.open("/","_self");
-                }
-            </script>
-        </body></head></html>`);
+        function run(){
+            return new Promise((success,error)=>{
+                request.get({
+                    url:"http://localhost:5000"
+                },async function(err,response,body){
+                    if(response){
+                        console.log(body);
+                        success(body);
+                    }else{
+                        console.log(err);
+                        error(err);
+                    }
+                });
+            });
+        }
+        await run().catch(err=>setInterval(start,interval));
+        setTimeout(start,interval);
+    }catch(err){
+        console.log(err);
     }
-    console.log("From Interval")
-    intervl();
-});
+}
 
 router.get("/company",fetch.company,(req,res)=>{
     if(!req.error){
