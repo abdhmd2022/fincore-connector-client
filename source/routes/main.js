@@ -61,7 +61,7 @@ async function start(){
                 });
             });
         }
-        await run().catch(err=>setInterval(start,interval));
+        await run().catch(err=>setTimeout(start,interval));
         setTimeout(start,interval);
     }catch(err){
         console.log(err);
