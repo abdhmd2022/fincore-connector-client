@@ -145,7 +145,7 @@ exports.xmlQueryWithDate = (date)=>{
                     "<TDLMESSAGE>"+
                         '<COLLECTION Name="exportVoucher" ISMODIFY="No">'+
                             "<TYPE>vouchers</TYPE>"+
-                            "<FETCH>typeofvoucher,reference,referencedate,partyledgername,alterid</FETCH>"+
+                            "<FETCH>typeofvoucher,reference,referencedate,partyledgername,isoptional,ispostdated,alterid</FETCH>"+
                         "</COLLECTION>"+
                     "</TDLMESSAGE>"+
                 "</TDL>"+

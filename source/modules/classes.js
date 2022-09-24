@@ -246,6 +246,20 @@ class JSONtrim{
                         }
                     }
 
+                    if(this.collection[i].ISOPTIONAL){
+                        if(this.collection[i].ISOPTIONAL[0]._)
+                        {
+                            obj[i].isOptional = right(this.collection[i].ISOPTIONAL[0]._);
+                        }
+                    }
+
+                    if(this.collection[i].ISPOSTDATED){
+                        if(this.collection[i].ISPOSTDATED[0]._)
+                        {
+                            obj[i].isPostDate = right(this.collection[i].ISPOSTDATED[0]._);
+                        }
+                    }
+
                     if(this.collection[i].CLOSINGBALANCE){
                         if(this.collection[i].CLOSINGBALANCE[0]._){
                             obj[i].closingQty = parseFloat(this.collection[i].CLOSINGBALANCE[0]._);
