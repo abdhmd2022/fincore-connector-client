@@ -1,52 +1,52 @@
 exports.xmlquery = ()=>{
-    const serialXml = "<ENVELOPE>" + 
-        "<HEADER>" + 
-            "<VERSION>1</VERSION>" + 
-            "<TALLYREQUEST>Export</TALLYREQUEST>" + 
-            "<TYPE>Function</TYPE>" + 
-            "<ID>$$LicenseInfo</ID>" + 
-        "</HEADER>" + 
-        "<BODY>" + 
-            "<DESC>" + 
-                "<FUNCPARAMLIST>" + 
-                    "<PARAM>Serial Number</PARAM>" + 
-                "</FUNCPARAMLIST>  " + 
-            "</DESC>" + 
-        "</BODY>" + 
+    const serialXml = "<ENVELOPE>"+ 
+        "<HEADER>"+ 
+            "<VERSION>1</VERSION>"+ 
+            "<TALLYREQUEST>Export</TALLYREQUEST>"+ 
+            "<TYPE>Function</TYPE>"+ 
+            "<ID>$$LicenseInfo</ID>"+ 
+        "</HEADER>"+ 
+        "<BODY>"+ 
+            "<DESC>"+ 
+                "<FUNCPARAMLIST>"+ 
+                    "<PARAM>Serial Number</PARAM>"+ 
+                "</FUNCPARAMLIST>  "+ 
+            "</DESC>"+ 
+        "</BODY>"+ 
     "</ENVELOPE>";
 
-    const currCompanyXml = "<ENVELOPE>" +
-        "<HEADER>" +
-            "<VERSION>1</VERSION>" +
-            "<TALLYREQUEST>Export</TALLYREQUEST>" +
-            "<TYPE>Function</TYPE>" +
-            "<ID>$$currentCompany</ID>" +
-        "</HEADER>" +
-        "<BODY>" +
-            "<DESC>  " +
-            "</DESC>" +
-        "</BODY>" +
+    const currCompanyXml = "<ENVELOPE>"+
+        "<HEADER>"+
+            "<VERSION>1</VERSION>"+
+            "<TALLYREQUEST>Export</TALLYREQUEST>"+
+            "<TYPE>Function</TYPE>"+
+            "<ID>$$currentCompany</ID>"+
+        "</HEADER>"+
+        "<BODY>"+
+            "<DESC>  "+
+            "</DESC>"+
+        "</BODY>"+
     "</ENVELOPE>";
     
-    const companyXml = "<ENVELOPE>" + 
-    "<HEADER>" + 
-        "<VERSION>1</VERSION>" + 
-        "<TALLYREQUEST>Export</TALLYREQUEST>" + 
-        "<TYPE>COLLECTION</TYPE>" + 
-        "<ID>expCompany</ID>" + 
-    "</HEADER>" + 
-    "<BODY>" + 
-        "<DESC>" + 
-            "<TDL>" + 
-                "<TDLMESSAGE>" + 
-                    '<COLLECTION Name="expCompany" ISMODIFY="No">' + 
+    const companyXml = "<ENVELOPE>"+ 
+    "<HEADER>"+ 
+        "<VERSION>1</VERSION>"+ 
+        "<TALLYREQUEST>Export</TALLYREQUEST>"+ 
+        "<TYPE>COLLECTION</TYPE>"+ 
+        "<ID>expCompany</ID>"+ 
+    "</HEADER>"+ 
+    "<BODY>"+ 
+        "<DESC>"+ 
+            "<TDL>"+ 
+                "<TDLMESSAGE>"+ 
+                    '<COLLECTION Name="expCompany" ISMODIFY="No">'+ 
                         "<SOURCECOLLECTION>company</SOURCECOLLECTION>"+
-                        "<FETCH>startingfrom,name</FETCH>" + 
-                    "</COLLECTION>" + 
-                "</TDLMESSAGE>" + 
-            "</TDL>" + 
-        "</DESC>" + 
-    "</BODY>" + 
+                        "<FETCH>startingfrom,name</FETCH>"+ 
+                    "</COLLECTION>"+ 
+                "</TDLMESSAGE>"+ 
+            "</TDL>"+ 
+        "</DESC>"+ 
+    "</BODY>"+ 
     "</ENVELOPE>";
 
     const stocksXml = "<ENVELOPE>"+
@@ -72,61 +72,62 @@ exports.xmlquery = ()=>{
         "</BODY>"+
     "</ENVELOPE>";
 
-    const ledgerBillsXml = "<ENVELOPE>"+
-        "<HEADER>" +
-            "<VERSION>1</VERSION>" +
-            "<TALLYREQUEST>Export</TALLYREQUEST>" +
-            "<TYPE>Collection</TYPE>" +
-            "<ID>exportledgerBills</ID>" +
-        "</HEADER>" +
-        "<BODY>" +
-            "<DESC>" +
-                "<TDL>" +
-                    "<TDLMESSAGE>" +
-                    '<COLLECTION Name="exportledgerBills" ISMODIFY="No">' +
-                        '<SOURCECOLLECTION>ledger</SOURCECOLLECTION>' +
-                        '<WALK>BILLALLOCATIONS</WALK>' +
-                        '<FETCH>masterid,name,billdate,openingbalance,billcreditperiod</FETCH>' +
-                    '</COLLECTION>' +
-                    "</TDLMESSAGE>" +
-                "</TDL>" +
-            "</DESC>" +
-        "</BODY>" +
-    "</ENVELOPE>";
-
     return {
         serialXml : serialXml,
         currCompanyXml : currCompanyXml,
         companyXml : companyXml,
-        stocksXml : stocksXml,
-        ledgerBillsXml : ledgerBillsXml
+        stocksXml : stocksXml
     }
 }
+
 exports.xmlQueryWithDate = (date)=>{
     const ledgerXml = "<ENVELOPE>"+
-        "<HEADER>" +
-            "<VERSION>1</VERSION>" +
-            "<TALLYREQUEST>Export</TALLYREQUEST>" +
-            "<TYPE>Collection</TYPE>" +
-            "<ID>exportCustomer</ID>" +
-        "</HEADER>" +
-        "<BODY>" +
-            "<DESC>" +
-                "<STATICVARIABLES>" +
-                    `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>` +
-                "</STATICVARIABLES>" +
-                "<TDL>" +
-                    "<TDLMESSAGE>" +
-                        '<COLLECTION Name="exportCustomer" ISMODIFY="No">' +
-                            "<SOURCECOLLECTION>Ledger</SOURCECOLLECTION>" +
-                            "<FETCH>masterid,alterid,name,mailingname,parent,billcreditperiod,creditlimit,address," +
-                            "countryname,pincode,ledgermobile,ledgercontact,ledgerphone,email,website,vattinnumber," +
-                            "openingbalance,reservename,ledstatename</FETCH>" +
-                        "</COLLECTION>" +
-                    "</TDLMESSAGE>" +
-                "</TDL>" +
-            "</DESC>" +
-        "</BODY>" +
+        "<HEADER>"+
+            "<VERSION>1</VERSION>"+
+            "<TALLYREQUEST>Export</TALLYREQUEST>"+
+            "<TYPE>Collection</TYPE>"+
+            "<ID>exportCustomer</ID>"+
+        "</HEADER>"+
+        "<BODY>"+
+            "<DESC>"+
+                "<STATICVARIABLES>"+
+                    `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>`+
+                "</STATICVARIABLES>"+
+                "<TDL>"+
+                    "<TDLMESSAGE>"+
+                        '<COLLECTION Name="exportCustomer" ISMODIFY="No">'+
+                            "<SOURCECOLLECTION>Ledger</SOURCECOLLECTION>"+
+                            "<FETCH>masterid,alterid,name,mailingname,parent,billcreditperiod,creditlimit,address,"+
+                            "countryname,pincode,ledgermobile,ledgercontact,ledgerphone,email,website,vattinnumber,"+
+                            "openingbalance,reservename,ledstatename</FETCH>"+
+                        "</COLLECTION>"+
+                    "</TDLMESSAGE>"+
+                "</TDL>"+
+            "</DESC>"+
+        "</BODY>"+
+    "</ENVELOPE>";
+
+    const ledgerBillsXml = "<ENVELOPE>"+
+        "<HEADER>"+
+            "<VERSION>1</VERSION>"+
+            "<TALLYREQUEST>Export</TALLYREQUEST>"+
+            "<TYPE>Collection</TYPE>"+
+            "<ID>exportledgerbills</ID>"+
+        "</HEADER>"+
+        "<BODY>"+
+            "<DESC>"+
+                "<TDL>"+
+                    "<TDLMESSAGE>"+
+                    '<COLLECTION Name="exportledgerbills" ISMODIFY="No">'+
+                        "<SOURCECOLLECTION>Ledgerbills</SOURCECOLLECTION>"+
+                        '<FETCH>parent,name,billdate,closingbalance,billcreditperiod</FETCH>'+
+                        "<FILTER>exportledgerbills</FILTER>"+
+                    '</COLLECTION>'+
+                    `<SYSTEM Type="Formula" Name="exportledgerbills" ISMODIFY="No">$$date:"${date}" >= $billdate</SYSTEM>`+
+                    "</TDLMESSAGE>"+
+                "</TDL>"+
+            "</DESC>"+
+        "</BODY>"+
     "</ENVELOPE>";
 
     const voucherXml = "<ENVELOPE>"+
@@ -138,9 +139,9 @@ exports.xmlQueryWithDate = (date)=>{
         "</HEADER>"+
         "<BODY>"+
             "<DESC>"+
-                "<STATICVARIABLES>" +
-                    `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>` +
-                "</STATICVARIABLES>" +
+                "<STATICVARIABLES>"+
+                    `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>`+
+                "</STATICVARIABLES>"+
                 "<TDL>"+
                     "<TDLMESSAGE>"+
                         '<COLLECTION Name="exportVoucher" ISMODIFY="No">'+
@@ -162,9 +163,9 @@ exports.xmlQueryWithDate = (date)=>{
         "</HEADER>"+
         "<BODY>"+
             "<DESC>"+
-                "<STATICVARIABLES>" +
-                    `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>` +
-                "</STATICVARIABLES>" +
+                "<STATICVARIABLES>"+
+                    `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>`+
+                "</STATICVARIABLES>"+
                 "<TDL>"+
                     "<TDLMESSAGE>"+
                         '<COLLECTION Name="exportVoucherSrc" ISMODIFY="No">'+
@@ -191,9 +192,9 @@ exports.xmlQueryWithDate = (date)=>{
         "</HEADER>"+
         "<BODY>"+
             "<DESC>"+
-                "<STATICVARIABLES>" +
-                    `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>` +
-                "</STATICVARIABLES>" +
+                "<STATICVARIABLES>"+
+                    `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>`+
+                "</STATICVARIABLES>"+
                 "<TDL>"+
                     "<TDLMESSAGE>"+
                         '<COLLECTION Name="exportVoucherSrc" ISMODIFY="No">'+
@@ -219,9 +220,9 @@ exports.xmlQueryWithDate = (date)=>{
         "</HEADER>"+
         "<BODY>"+
             "<DESC>"+
-                "<STATICVARIABLES>" +
-                    `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>` +
-                "</STATICVARIABLES>" +
+                "<STATICVARIABLES>"+
+                    `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>`+
+                "</STATICVARIABLES>"+
                 "<TDL>"+
                     "<TDLMESSAGE>"+
                         '<COLLECTION Name="exportVoucherSrc" ISMODIFY="No">'+
@@ -248,9 +249,9 @@ exports.xmlQueryWithDate = (date)=>{
         "</HEADER>"+
         "<BODY>"+
             "<DESC>"+
-                "<STATICVARIABLES>" +
-                    `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>` +
-                "</STATICVARIABLES>" +
+                "<STATICVARIABLES>"+
+                    `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>`+
+                "</STATICVARIABLES>"+
                 "<TDL>"+
                     "<TDLMESSAGE>"+
                         '<COLLECTION Name="exportVoucherSrc" ISMODIFY="No">'+
@@ -270,6 +271,7 @@ exports.xmlQueryWithDate = (date)=>{
 
     return {
         ledgerXml : ledgerXml,
+        ledgerBillsXml : ledgerBillsXml,
         voucherXml : voucherXml,
         inventoryXml : inventoryXml,
         ledgerEntryXml : ledgerEntryXml,

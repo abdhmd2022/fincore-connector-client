@@ -5,7 +5,7 @@ const {Tally,JSONtrim,Config} = require("./classes");
 
 exports.post = async (req,res,next)=>{
     try{
-        var {serialXml,currCompanyXml,companyXml,stocksXml,ledgerBillsXml} = xml.xmlquery();
+        var {serialXml,currCompanyXml,companyXml,stocksXml} = xml.xmlquery();
         let config = await (new Config().configJSON());
         
         const tallyHost = config.TALLY_HOST;
@@ -29,10 +29,10 @@ exports.post = async (req,res,next)=>{
                     let start = config.STARTFROM[cindex];
                     var startFrom = !start ? companyObj[companyObj.findIndex(selectStart)].startFrom : start;
                     
-                    var {ledgerXml,voucherXml,inventoryXml,ledgerEntryXml,
+                    var {ledgerXml,ledgerBillsXml,voucherXml,inventoryXml,ledgerEntryXml,
                         billsXml,costCentreXml} = xml.xmlQueryWithDate(startFrom);
                     var stocksObj = await tally2Json(stocksXml,"STOCKITEM");
-                    var ledgerBillsObj = await tally2Json(ledgerBillsXml,"LEDGERBILLALLOCATIONS");
+                    var ledgerBillsObj = await tally2Json(ledgerBillsXml,"BILL");
                     var ledgerObj = await tally2Json(ledgerXml,"LEDGER");
                     var voucherObj = await tally2Json(voucherXml,"VOUCHER");
                     var inventoryObj = await tally2Json(inventoryXml,"BATCHALLOCATIONS");

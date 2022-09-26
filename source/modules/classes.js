@@ -262,7 +262,11 @@ class JSONtrim{
 
                     if(this.collection[i].CLOSINGBALANCE){
                         if(this.collection[i].CLOSINGBALANCE[0]._){
-                            obj[i].closingQty = parseFloat(this.collection[i].CLOSINGBALANCE[0]._);
+                            if(this.type == "STOCKITEM"){
+                                obj[i].closingQty = parseFloat(this.collection[i].CLOSINGBALANCE[0]._);
+                            }else{
+                                obj[i].closingBalance = parseFloat(this.collection[i].CLOSINGBALANCE[0]._);
+                            }
                         }  
                     }
 
