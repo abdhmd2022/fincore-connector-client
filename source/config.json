@@ -4,7 +4,7 @@
     "TALLY_HOST" : "localhost",
     "TALLY_PORT" : 9000,
     "serial" : 767060064,
-    "company" : ["Your Choice Tourism LLC","Alpha Technik","Demo","Demo1"],
-    "STARTFROM" : [20200101,20220101,20190101,20160101],
+    "company" : ["Your Choice Tourism LLC","Alpha Technik","Demo","Demo1", "Demo New for Mobile App"],
+    "STARTFROM" : [20200101,20220101,20190101,20160101, 20210101],
     "CLOUD" : "http://billing.chaturvedigroup.com"
 }

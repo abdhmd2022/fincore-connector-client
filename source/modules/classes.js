@@ -76,7 +76,9 @@ class JSONtrim{
                 var obj = [];
                 
                 function right(value){
-                    return value.replace("\x04 ","").replace("\"","'").trim()
+                    if(value){
+                        return value.replace("\x04 ","").replace("\"","'").trim()
+                    }
                 }
                 
                 for(var i = (this.length-1);i>=0;i--){
@@ -377,6 +379,7 @@ class JSONtrim{
                 }
                 success(obj);
             }catch(err){
+                console.log(err);
                 error("Unable to JSON parse");
             } 
         });
