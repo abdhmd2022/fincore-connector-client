@@ -286,7 +286,7 @@ class JSONtrim{
 
                     if(this.collection[i].LASTSALEDATE){
                         if(this.collection[i].LASTSALEDATE[0]._){
-                            obj[i].saleDate = parseInt(this.collection[i].LASTSALEDATE[0]._);
+                            obj[i].saleDate = parseFloat(this.collection[i].LASTSALEDATE[0]._);
                         }
                     }
 
@@ -298,7 +298,7 @@ class JSONtrim{
 
                     if(this.collection[i].LASTSALEPRICE){
                         if(this.collection[i].LASTSALEPRICE[0]._){
-                            obj[i].saleRate = parseInt(this.collection[i].LASTSALEPRICE[0]._);
+                            obj[i].saleRate = parseFloat(this.collection[i].LASTSALEPRICE[0]._);
                         }
                     }
 

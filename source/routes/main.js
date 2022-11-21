@@ -6,10 +6,10 @@ const request = require("request");
 
 router.get("/",fetch.post,(req,res)=>{
     if(!req.error){
-        console.log("All data Inserted Successfully");
+        console.log(new Date(),"All data Inserted Successfully");
         res.send({success:true});
     }else{
-        console.log(req.error);
+        console.log(new Date(),req.error);
         res.status(400).redirect("/retry/1");
     }
 });
@@ -17,10 +17,10 @@ router.get("/",fetch.post,(req,res)=>{
 router.get("/home/:retry",fetch.post,(req,res)=>{
     const retry = req.params.retry;
     if(!req.error){
-        console.log("All data Inserted Successfully");
+        console.log(new Date(),"All data Inserted Successfully");
         res.send({success:true});
     }else{
-        console.log(req.error);
+        console.log(new Date(),req.error);
         res.status(400).redirect(`/retry/${retry}`);
     }
 });
@@ -49,13 +49,14 @@ async function start(){
         function run(){
             return new Promise((success,error)=>{
                 request.get({
-                    url:"http://localhost:5500"
+                    url:"http://localhost:5000"
                 },async function(err,response,body){
                     if(response){
-                        console.log(body);
+                        console.log(response);
+                        console.log(new Date(),body);
                         success(body);
                     }else{
-                        console.log(err);
+                        console.log(new Date(),err);
                         error(err);
                     }
                 });
@@ -64,7 +65,7 @@ async function start(){
         await run().catch(err=>setTimeout(start,interval));
         setTimeout(start,interval);
     }catch(err){
-        console.log(err);
+        console.log(new Date(),err);
     }
 }
 
