@@ -113,19 +113,21 @@ exports.xmlQueryWithDate = (date)=>{
             "<TALLYREQUEST>Export</TALLYREQUEST>"+
             "<TYPE>Collection</TYPE>"+
             "<ID>exportledgerbills</ID>"+
-        "</HEADER>"+
+        "</HEADER> "+
         "<BODY>"+
             "<DESC>"+
-                "<TDL>"+
-                    "<TDLMESSAGE>"+
-                    '<COLLECTION Name="exportledgerbills" ISMODIFY="No">'+
-                        "<SOURCECOLLECTION>Ledgerbills</SOURCECOLLECTION>"+
-                        '<FETCH>parent,name,billdate,closingbalance,billcreditperiod</FETCH>'+
-                        "<FILTER>exportledgerbills</FILTER>"+
-                    '</COLLECTION>'+
-                    `<SYSTEM Type="Formula" Name="exportledgerbills" ISMODIFY="No">$$date:"${date}" >= $billdate</SYSTEM>`+
-                    "</TDLMESSAGE>"+
-                "</TDL>"+
+            "<STATICVARIABLES>"+
+                `<SVFROMDATE TYPE='Date'>${date}</SVFROMDATE>`+
+                `<SVTODATE TYPE='Date'>${date}</SVTODATE>`+
+            "</STATICVARIABLES>         "+
+            "<TDL>"+
+                "<TDLMESSAGE>"+
+                    "<COLLECTION Name='exportledgerbills' ISMODIFY='No'>"+
+                        "<TYPE>bills</TYPE>"+
+                        "<FETCH>parent,name,billdate,closingbalance,billcreditperiod</FETCH>"+
+                    "</COLLECTION>"+
+                "</TDLMESSAGE>"+
+            "</TDL>"+
             "</DESC>"+
         "</BODY>"+
     "</ENVELOPE>";

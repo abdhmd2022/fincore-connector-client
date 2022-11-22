@@ -52,7 +52,6 @@ async function start(){
                     url:"http://localhost:5000"
                 },async function(err,response,body){
                     if(response){
-                        console.log(response);
                         console.log(new Date(),body);
                         success(body);
                     }else{
