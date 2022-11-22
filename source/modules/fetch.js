@@ -27,7 +27,7 @@ exports.post = async (req,res,next)=>{
                 if(company){
                     let cindex = companyList.findIndex(verifyCompany);
                     let start = config.STARTFROM[cindex];
-                    var startFrom = !start ? companyObj[companyObj.findIndex(selectStart)].startFrom : start;
+                    var startFrom = start ? start :  companyObj[companyObj.findIndex(selectStart)].startFrom;
                     
                     var {ledgerXml,ledgerBillsXml,voucherXml,inventoryXml,ledgerEntryXml,
                         billsXml,costCentreXml} = xml.xmlQueryWithDate(startFrom);
