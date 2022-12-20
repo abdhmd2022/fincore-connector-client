@@ -31,14 +31,14 @@ exports.post = async (req,res,next)=>{
                     
                     var {ledgerXml,ledgerBillsXml,voucherXml,inventoryXml,ledgerEntryXml,
                         billsXml,costCentreXml} = xml.xmlQueryWithDate(startFrom);
-                    var stocksObj = await tally2Json(stocksXml,"STOCKITEM");
+                    // var stocksObj = await tally2Json(stocksXml,"STOCKITEM");
                     var ledgerBillsObj = await tally2Json(ledgerBillsXml,"BILL");
-                    var ledgerObj = await tally2Json(ledgerXml,"LEDGER");
+                    /* var ledgerObj = await tally2Json(ledgerXml,"LEDGER");
                     var voucherObj = await tally2Json(voucherXml,"VOUCHER");
                     var inventoryObj = await tally2Json(inventoryXml,"BATCHALLOCATIONS");
                     var ledgerEntryObj = await tally2Json(ledgerEntryXml,"LEDGERENTRY");
                     var billsObj = await tally2Json(billsXml,"BILLALLOCATIONS");
-                    var costCentreObj = await tally2Json(costCentreXml,"COSTCENTERALLOCATIONS");
+                    var costCentreObj = await tally2Json(costCentreXml,"COSTCENTERALLOCATIONS"); */
                     return next();
                 }else{
                     error = "Company not registered";

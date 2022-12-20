@@ -92,6 +92,7 @@ exports.xmlQueryWithDate = (date)=>{
             "<DESC>"+
                 "<STATICVARIABLES>"+
                     `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>`+
+                    '<SVTODATE TYPE="Date">@@expEndDate</SVTODATE>'+
                 "</STATICVARIABLES>"+
                 "<TDL>"+
                     "<TDLMESSAGE>"+
@@ -101,6 +102,7 @@ exports.xmlQueryWithDate = (date)=>{
                             "countryname,pincode,ledgermobile,ledgercontact,ledgerphone,email,website,vattinnumber,"+
                             "openingbalance,reservename,ledstatename</FETCH>"+
                         "</COLLECTION>"+
+                        '<SYSTEM TYPE="Formulae" NAME="expEndDate">$endingat:company:$$currentcompany</SYSTEM>'+
                     "</TDLMESSAGE>"+
                 "</TDL>"+
             "</DESC>"+
@@ -125,7 +127,9 @@ exports.xmlQueryWithDate = (date)=>{
                     "<COLLECTION Name='exportledgerbills' ISMODIFY='No'>"+
                         "<TYPE>bills</TYPE>"+
                         "<FETCH>parent,name,billdate,closingbalance,billcreditperiod</FETCH>"+
+                        "<FILTER>expOpenDate</FILTER>"+
                     "</COLLECTION>"+
+                    `<SYSTEM TYPE="Formulae" NAME="expOpenDate">$$date:$billdate &lt; $$date:"${date}"</SYSTEM>`+
                 "</TDLMESSAGE>"+
             "</TDL>"+
             "</DESC>"+
@@ -143,6 +147,7 @@ exports.xmlQueryWithDate = (date)=>{
             "<DESC>"+
                 "<STATICVARIABLES>"+
                     `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>`+
+                    '<SVTODATE TYPE="Date">@@expEndDate</SVTODATE>'+
                 "</STATICVARIABLES>"+
                 "<TDL>"+
                     "<TDLMESSAGE>"+
@@ -151,6 +156,7 @@ exports.xmlQueryWithDate = (date)=>{
                             "<FETCH>typeofvoucher,reference,referencedate,partyledgername,isoptional,ispostdated,alterid</FETCH>"+
                         "</COLLECTION>"+
                     "</TDLMESSAGE>"+
+                    '<SYSTEM TYPE="Formulae" NAME="expEndDate">$endingat:company:$$currentcompany</SYSTEM>'+
                 "</TDL>"+
             "</DESC>"+
         "</BODY>"+
@@ -167,6 +173,7 @@ exports.xmlQueryWithDate = (date)=>{
             "<DESC>"+
                 "<STATICVARIABLES>"+
                     `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>`+
+                    '<SVTODATE TYPE="Date">@@expEndDate</SVTODATE>'+
                 "</STATICVARIABLES>"+
                 "<TDL>"+
                     "<TDLMESSAGE>"+
@@ -179,6 +186,7 @@ exports.xmlQueryWithDate = (date)=>{
                             "<FETCH>date,trackingnumber,batchname,godownname,orderno,ledgername,"+
                             "stockitemname,billedqty,rate,amount,discount,masterid,isdeemedpositive</FETCH>"+
                         "</COLLECTION>"+
+                        '<SYSTEM TYPE="Formulae" NAME="expEndDate">$endingat:company:$$currentcompany</SYSTEM>'+
                     "</TDLMESSAGE>"+
                 "</TDL>"+
             "</DESC>"+
@@ -196,6 +204,7 @@ exports.xmlQueryWithDate = (date)=>{
             "<DESC>"+
                 "<STATICVARIABLES>"+
                     `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>`+
+                    '<SVTODATE TYPE="Date">@@expEndDate</SVTODATE>'+
                 "</STATICVARIABLES>"+
                 "<TDL>"+
                     "<TDLMESSAGE>"+
@@ -207,6 +216,7 @@ exports.xmlQueryWithDate = (date)=>{
                             "<WALK>AllLedgerEntries</WALK>"+
                             "<FETCH>date,amount,ledgername,masterid</FETCH>"+
                         "</COLLECTION>"+
+                        '<SYSTEM TYPE="Formulae" NAME="expEndDate">$endingat:company:$$currentcompany</SYSTEM>'+
                     "</TDLMESSAGE>"+
                 "</TDL>"+
             "</DESC>"+
@@ -224,6 +234,7 @@ exports.xmlQueryWithDate = (date)=>{
             "<DESC>"+
                 "<STATICVARIABLES>"+
                     `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>`+
+                    '<SVTODATE TYPE="Date">@@expEndDate</SVTODATE>'+
                 "</STATICVARIABLES>"+
                 "<TDL>"+
                     "<TDLMESSAGE>"+
@@ -236,6 +247,7 @@ exports.xmlQueryWithDate = (date)=>{
                             "<NATIVEMETHOD>masterid</NATIVEMETHOD>"+
                             "<FETCH>date,ledgername,name,billdate,billcreditperiod,amount,billtype</FETCH>"+
                         "</COLLECTION>"+
+                        '<SYSTEM TYPE="Formulae" NAME="expEndDate">$endingat:company:$$currentcompany</SYSTEM>'+
                     "</TDLMESSAGE>"+
                 "</TDL>"+
             "</DESC>"+
@@ -253,6 +265,7 @@ exports.xmlQueryWithDate = (date)=>{
             "<DESC>"+
                 "<STATICVARIABLES>"+
                     `<SVFROMDATE TYPE="Date">${date}</SVFROMDATE>`+
+                    '<SVTODATE TYPE="Date">@@expEndDate</SVTODATE>'+
                 "</STATICVARIABLES>"+
                 "<TDL>"+
                     "<TDLMESSAGE>"+
@@ -265,6 +278,7 @@ exports.xmlQueryWithDate = (date)=>{
                             "<NATIVEMETHOD>masterid</NATIVEMETHOD>"+
                             "<FETCH>date,ledgername,name,category,amount</FETCH>"+
                         "</COLLECTION>"+
+                        '<SYSTEM TYPE="Formulae" NAME="expEndDate">$endingat:company:$$currentcompany</SYSTEM>'+
                     "</TDLMESSAGE>"+
                 "</TDL>"+
             "</DESC>"+
