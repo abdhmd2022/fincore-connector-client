@@ -125,11 +125,22 @@ exports.xmlQueryWithDate = (date)=>{
             "<TDL>"+
                 "<TDLMESSAGE>"+
                     "<COLLECTION Name='exportledgerbills' ISMODIFY='No'>"+
+                        "<COLLECTION>exportClearedbills,exportOpeningbills</COLLECTION>"+
+                        "<FETCH>parent,name,billdate,closingbalance,billcreditperiod</FETCH>"+
+                    "</COLLECTION>"+
+                    "<COLLECTION Name='exportOpeningbills' ISMODIFY='No'>"+
                         "<TYPE>bills</TYPE>"+
                         "<FETCH>parent,name,billdate,closingbalance,billcreditperiod</FETCH>"+
                         "<FILTER>expOpenDate</FILTER>"+
                     "</COLLECTION>"+
                     `<SYSTEM TYPE="Formulae" NAME="expOpenDate">$$date:$billdate &lt; $$date:"${date}"</SYSTEM>`+
+                    `<SYSTEM TYPE="Formulae" NAME="exportClearedbills">$$date:$ClearedOn = $$date:"${date}"</SYSTEM>`+
+                    "<COLLECTION Name='exportClearedbills' ISMODIFY='No'>"+
+                        "<TYPE>bills</TYPE>"+
+                        "<CLEARED>Yes</CLEARED>"+
+                        "<FETCH>parent,name,billdate,closingbalance,billcreditperiod</FETCH>"+
+                        "<FILTER>exportClearedbills</FILTER>"+
+                    "</COLLECTION>"+
                 "</TDLMESSAGE>"+
             "</TDL>"+
             "</DESC>"+
