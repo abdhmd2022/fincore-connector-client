@@ -13,7 +13,7 @@ class Tally {
             request.post({
                 headers : {"content-type":"applicaiton/xml","content":"UTF-8"},
                 url : `http://${this.tallyHost}:${this.tallyPort}`,
-                body:this.xml
+                body: this.xml
             },
             function(err,response,body){
                 if(response){
