@@ -79,7 +79,7 @@ exports.post = async (req,res,next)=>{
         function toCloud(company,serialNo,startFrom,obj){
             return new Promise((success,error)=>{
                 try{
-                    let url = `${config.CLOUD}/${company.replace(/ /g,"").toLowerCase()}/${serialNo}/${startFrom}`;
+                    let url = `${config.CLOUD}/${company.replace(/[^a-zA-Z0-9_]/g,"").toLowerCase()}/${serialNo}/${startFrom}`;
                     request.post({
                         headers:{"content-type":"application/json","content":"UTF-8"},
                         url:url,
